@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/ec0964f47e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Weather API</title>
+</head>
+<body>
+
+    <div id="container">
+        <div id="header">
+            <div id="logoBox">
+                <img id="logo" src="images/2560px-Buienradar.svg.png">
+            </div>
+            <div id="searchBox">
+                <form id="searchForm" autocomplete="off" onsubmit="return false;">
+                    <div id="inputHolder">
+                        <div id="textBoxBackground">
+                            <input type="text" id="textBox" onblur="checkInput();" placeholder="&#xF002; Zoeken" style="font-family:Arial, FontAwesome" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div id="menuBox">
+                <div id="menu">
+                    <i class="fa-solid fa-bars fa-2xl" style="color: #808080;"></i>
+                </div>
+            </div>
+
+        </div>
+        <div id="main">
+            <div id="weatherResults"></div>
+        </div>
+        <div id="footer"></div>
+    </div>
+
+
+</body>
+</html>
