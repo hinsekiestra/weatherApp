@@ -5,39 +5,91 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Weather API</title>
+    <title>Vue JS Weather App</title>
 </head>
 <body>
 
-    <div id="container">
-        <div id="header">
-            <div id="logoBox">
-                <img id="logo" src="images/2560px-Buienradar.svg.png">
-            </div>
-            <div id="searchBox">
-                <form id="searchForm" autocomplete="off" onsubmit="return false;">
-                    <div id="inputHolder">
-                        <div id="textBoxBackground">
-                            <input type="text" id="textBox" onblur="checkInput();" placeholder="&#xF002; Zoeken" style="font-family:Arial, FontAwesome" />
-                        </div>
+    <div id="app">
+        <div id="container">
+            <div id="header">
+                <div style="justify-content: center;" class="header-box">
+                    <img id="logo" src="images/2560px-Buienradar.svg.png">
+                </div>
+                <div id="search-wrapper" :class="typeof weather.main !='undefined' && weather.main.temp > 16 ? 
+                    'warm' : ''">
+                    <div id="searchBox">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #bbbbbb;"></i>
+                        <input type="text"
+                            id="textBox"
+                            placeholder="Search"
+                            style="font-family:Arial, FontAwesome"
+                            v-model="query"
+                            @keypress="fetchWeather"
+                        />
                     </div>
 
-                </form>
-            </div>
-            <div id="menuBox">
-                <div id="menu">
-                    <i class="fa-solid fa-bars fa-2xl" style="color: #808080;"></i>
+                </div>
+                <div style="justify-content: space-between;" class="header-box">
+                    <div id="button-wrapper">
+                        <button>Home</button>
+                        <button>About</button>
+                        <button>Learn more</button>
+                    </div>
+                    <div id="menu-wrapper">
+                        <i class="fa-solid fa-bars fa-2xl" style="color: #e3e3e3;"></i>
+                    </div>
                 </div>
             </div>
+            <div id="main">
+                <div id="weather-wrapper" v-if="typeof weather.main != 'undefined'">
+                    <div id="location-box">
+                        <div id="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+                        <div id="date">{{ dateBuilder() }}</div>
+                    </div>
+                    <div id="weather-box">
+                        <div id="temp">{{ Math.round(weather.main.temp) }}°C</div>
+                        <div id="weather-type"> {{ weather.weather[0].main }}</div>
+                    </div>
+                    <div id="info-box">
+                        <p style="font-style: italic; font-weight: bold; margin: 0;">More weather info:</p>
+                        <div id="info-wrapper">
+                            <div class="wrapper">
+                                <div id="min-max">
+                                    <div id="min-max-wrapper">
+                                        <div id="min">{{ Math.round(weather.main.temp_min) }}°C |&nbsp;</div>
+                                        <div id="max">{{ Math.round(weather.main.temp_max) }}°C</div>
+                                    </div>
 
+                                </div>
+                                <div id="humidity-wrapper">
+                                    <i class="fa-solid fa-droplet"></i>&nbsp;
+                                    <div>Humidity:&nbsp;</div>
+                                    <div id="humidity"> {{ weather.main.humidity }}%</div>
+                                </div>
+                            </div>
+                            <div id="wind">
+                                <table>
+                                    <tr>
+                                        <td>Wind speed:</td>
+                                        <td><div id="wind-speed">{{ Math.round(weather.wind.speed) }} km/h</div></td>
+                                        <td><i class="fa-solid fa-wind"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wind direction:</td>
+                                        <td><div id="wind-direction">{{ windDirection(weather.wind.deg) }}</div></td>
+                                        <td><i :style="arrowDirection(weather.wind.deg)" class="fa-solid fa-arrow-up-long"></i></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer"></div>
         </div>
-        <div id="main">
-            <div id="weatherResults"></div>
-        </div>
-        <div id="footer"></div>
     </div>
 
-
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
