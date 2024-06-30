@@ -40,8 +40,6 @@ const app = Vue.createApp({
         },
         arrowDirection(deg) {
             let direction="transform: rotate(" + deg + "deg)";
-            console.log(deg);
-            console.log(direction);
             return direction;
         }
     }
