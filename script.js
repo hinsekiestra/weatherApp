@@ -23,7 +23,7 @@ const app = Vue.createApp({
             let d = new Date();
             let months = ["January", "February", "March", "April", "May", "June", 
             "July", "August", "September", "October", "November", "December"];
-            let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
             let day = days[d.getDay()];
             let date = d.getDate();
@@ -48,4 +48,4 @@ const app = Vue.createApp({
 })
 app.mount('#app');
 
-//https://api.openweathermap.org/data/2.5/weather?q=singapore&units=metric&APPID=ad7b75e05e8dd0be0f115e9dc85422bc
+//https://api.openweathermap.org/data/2.5/weather?q=zwolle&units=metric&APPID=ad7b75e05e8dd0be0f115e9dc85422bc
