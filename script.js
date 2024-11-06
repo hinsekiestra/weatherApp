@@ -33,7 +33,9 @@ const app = Vue.createApp({
             return `${day} ${date} ${month} ${year}`;
         },
         windDirection(deg) {
-            let directions = ["North", "North/Northeast", "Northeast", "East/Northeast", "East", "East/Southeast", "Southeast", "South/Southeast", "South", "South/Southwest", "Southwest", "West/Southwest", "West", "West/Northwest", "Northwest", "North/Northwest"];
+            let directions = ["North", "North/Northeast", "Northeast", "East/Northeast", "East", "East/Southeast", 
+                "Southeast", "South/Southeast", "South", "South/Southwest", "Southwest", "West/Southwest", "West", 
+                "West/Northwest", "Northwest", "North/Northwest"];
             let index = (Math.round(deg / 22,5, 1));
             let result = directions[index - 1];
             return result;
@@ -45,5 +47,3 @@ const app = Vue.createApp({
     }
 })
 app.mount('#app');
-
-//https://api.openweathermap.org/data/2.5/weather?q=zwolle&units=metric&APPID=ad7b75e05e8dd0be0f115e9dc85422bc
