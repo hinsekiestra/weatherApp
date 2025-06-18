@@ -17,6 +17,10 @@ const app = Vue.createApp({
             }
         },
         setResults(results) {
+            if (results.cod != 200) {
+                alert("City not found");
+                return;
+            }
             this.weather = results;
         },
         dateBuilder() {
