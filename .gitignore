@@ -1,0 +1,4 @@
+.vscode/
+composer.phar
+node_modules/
+.env
